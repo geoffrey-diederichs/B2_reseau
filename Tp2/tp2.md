@@ -117,9 +117,10 @@ Lan 2 (192.168.57.0) :
 
 ## Compte-rendu
 
-Sur node1.lan1.tp2 :
-
 ```sh
+[rocky@node1 ~]$ hostname
+node1.lan1.tp2
+
 [rocky@node1 ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
