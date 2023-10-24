@@ -216,6 +216,8 @@ $ sudo arping 10.33.79.254
 $ dig google.com
 ```
 
+[Capture DNS](./captures/dns.pcap)
+
 ---
 
 ☀️ **Capture TCP**
