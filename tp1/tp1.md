@@ -1,4 +1,4 @@
-DIEDERICHS Geoffrey B2a
+DIEDERICHS Geoffrey B2A
 
 # TP1 : Maîtrise réseau du poste
 
