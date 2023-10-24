@@ -9,36 +9,32 @@ DIEDERICHS Geoffrey B2A
 
 # 0. Prérequis
 
-Exemple de la checklist sur le routeur :
+Exemple de la checklist :
 
 ```sh
-[rocky@routeur ~]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s8
+[rocky@node1 ~]$ hostname
+nod1.lan1.tp2
+
+[rocky@node1 ~]$ cat /etc/hosts | tail -n 4
+192.168.56.12 node2.lan1.tp2
+192.168.57.11 node1.lan2.tp2
+192.168.57.12 node2.lan2.tp2
+192.168.56.254 routeur.tp2
+
+[rocky@node1 ~]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s8 
 NAME=enp0s8
 DEVICE=enp0s8
 
 BOOTPROTO=static
 ONBOOT=yes
 
-IPADDR=192.168.56.254
+IPADDR=192.168.56.11
 NETMASK=255.255.255.0
 
 GATEWAY=192.168.56.1
 DNS1=1.1.1.1
 
-[rocky@routeur ~]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s9
-NAME=enp0s9
-DEVICE=enp0s9
-
-BOOTPROTO=static
-ONBOOT=yes
-
-IPADDR=192.168.57.254
-NETMASK=255.255.255.0
-
-GATEWAY=192.168.57.1
-DNS1=1.1.1.1
-
-[rocky@routeur ~]$ ip a
+[rocky@node1 ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -46,35 +42,20 @@ DNS1=1.1.1.1
     inet6 ::1/128 scope host 
        valid_lft forever preferred_lft forever
 2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 08:00:27:b7:4f:88 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.56.254/24 brd 192.168.56.255 scope global noprefixroute enp0s8
+    link/ether 08:00:27:f3:98:99 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.11/24 brd 192.168.56.255 scope global noprefixroute enp0s8
        valid_lft forever preferred_lft forever
-    inet6 fe80::a00:27ff:feb7:4f88/64 scope link 
-       valid_lft forever preferred_lft forever
-3: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 08:00:27:9a:d7:c4 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.57.254/24 brd 192.168.57.255 scope global noprefixroute enp0s9
-       valid_lft forever preferred_lft forever
-    inet6 fe80::a00:27ff:fe9a:d7c4/64 scope link 
+    inet6 fe80::a00:27ff:fef3:9899/64 scope link 
        valid_lft forever preferred_lft forever
 
-[rocky@routeur ~]$ systemctl is-active sshd
+[rocky@node1 ~]$ systemctl is-active sshd
 active
 
-[rocky@routeur ~]$ systemctl is-active firewalld
+[rocky@node1 ~]$ systemctl is-active firewalld
 active
 
-[rocky@routeur ~]$ sestatus
+[rocky@node1 ~]$ sestatus
 SELinux status:                 disabled
-
-[rocky@routeur ~]$ hostname
-routeur.tp2
-
-[rocky@routeur ~]$ cat /etc/hosts | tail -n 4
-192.168.56.11 node1.lan1.tp2
-192.168.56.12 node2.lan1.tp2
-192.168.57.11 node1.lan2.tp2
-192.168.57.12 node2.lan2.tp2
 ```
 
 # I. Topologie réseau
