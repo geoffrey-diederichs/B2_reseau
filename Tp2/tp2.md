@@ -1,3 +1,5 @@
+DIEDERICHS Geoffrey B2A
+
 # TP2 : Environnement virtuel
 
 - [0. Prérequis](#0-prérequis)
