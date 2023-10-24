@@ -135,6 +135,11 @@ node1.lan1.tp2
     inet6 fe80::a00:27ff:fef3:9899/64 scope link 
        valid_lft forever preferred_lft forever
 
+[rocky@node1 ~]$ ip r s
+default via 192.168.56.254 dev enp0s8 proto static metric 100 
+192.168.56.0/24 dev enp0s8 proto kernel scope link src 192.168.56.11 metric 100 
+192.168.57.0/24 via 192.168.56.254 dev enp0s8 proto static metric 100
+
 [rocky@node1 ~]$ ping node2.lan2.tp2 -c 1
 PING node2.lan2.tp2 (192.168.57.12) 56(84) bytes of data.
 64 bytes from node2.lan2.tp2 (192.168.57.12): icmp_seq=1 ttl=63 time=0.673 ms
