@@ -159,9 +159,10 @@ rtt min/avg/max/mdev = 17.402/17.402/17.402/0.000 ms
 
 ☀️ **Accès internet LAN1 et LAN2**
 
-node2.lan1.tp2 :
-
 ```sh
+[rocky@node2 ~]$ hostname
+node2.lan1.tp2
+
 [rocky@node2 ~]$ cat /etc/sysconfig/network-scripts/route-enp0s8 | tail -n 1
 default via 192.168.56.254 dev enp0s8
 
