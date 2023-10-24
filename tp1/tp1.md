@@ -95,6 +95,8 @@ IP4.DNS[2]:                             1.1.1.1
 
 ☀️ **Table de routage**
 
+Route par défaut :
+
 ```sh
 $ ip r s | head -2
 default via 10.33.79.254 dev wlp4s0 
