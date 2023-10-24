@@ -208,7 +208,7 @@ $ sudo arping 10.33.79.254
 
 Filtre : arp
 
-[Capture ARP](./captures/arp.pcap)
+[Capture ARP](./Captures/arp.pcap)
 
 ---
 
@@ -220,7 +220,7 @@ $ dig google.com
 
 Filtre : dns
 
-[Capture DNS](./captures/dns.pcap)
+[Capture DNS](./Captures/dns.pcap)
 
 ---
 
@@ -228,4 +228,4 @@ Filtre : dns
 
 Filtre : tcp
 
-[Capture TCP](./captures/tcp.pcap)
+[Capture TCP](./Captures/tcp.pcap)
