@@ -103,11 +103,7 @@ default via 10.33.79.254 dev wlp4s0
 default via 10.33.79.254 dev wlp4s0 proto dhcp src 10.33.76.225 metric 600
 ```
 
----
-
 # II. Go further
-
----
 
 ☀️ **Hosts ?**
 
