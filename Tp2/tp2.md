@@ -267,7 +267,7 @@ routeur.tp2
 192.168.57.12 node2.lan2.tp2
 ```
 
-# I. Topologie
+# I. Topologie réseau
 
 ## Configuration
 
