@@ -246,7 +246,7 @@ root        1906    1848  0 12:15 ?        00:00:00 grep calculatrice
 
 [Contenu de /etc/passwd](./Files/passwd.txt)
 
-[Code serveur de l'application](./Files/server.py)
+[Code serveur de l'application](./Scripts/server.py)
 
 Le service ssh est disponible et exploitable sur la machine :
 
