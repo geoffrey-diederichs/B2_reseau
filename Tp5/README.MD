@@ -278,6 +278,135 @@ Le DOS dans l'esprit, souvent c'est :
 
 🌞 **Proposer une remédiation système**
 
-- l'environnement dans lequel tourne le service est foireux (le user utilisé ?)
-- la machine devrait bloquer les connexions sortantes (pas de reverse shell possible)
+Faire tourner le server sur un containeur Docker encore une fois pour limiter les possibilités si le service se fait pown.
 
+```bash
+$ ls
+server.py
+
+$ python3 -m venv .env
+
+$ source .env/bin/activate
+
+(.env) $ pip freeze > requirements.txt
+
+(.env) $ pip install -r requirements.txt
+
+(.env) $ docker init
+
+Welcome to the Docker Init CLI!
+
+This utility will walk you through creating the following files with sensible defaults for your project:
+  - .dockerignore
+  - Dockerfile
+  - compose.yaml
+
+Let's get started!
+
+? Do you want to overwrite them? Yes
+? What application platform does your project use? Python
+? What version of Python do you want to use? 3.11.6
+? What port do you want your app to listen on? 8000
+? What is the command to run your app (e.g., gunicorn 'myapp.example:app' --bind=0.0.0.0:8000)? python3 server.py
+
+CREATED: .dockerignore
+CREATED: Dockerfile
+CREATED: compose.yaml
+
+✔ Your Docker files are ready!
+
+Take a moment to review them and tailor them to your application.
+
+When you're ready, start your application by running: docker compose up --build
+
+Your application will be available at http://localhost:8000
+
+(.env) $ cat server.py | grep 'host = '
+host = '' # string vide signifie, dans ce conetxte, toutes les IPs de la machine
+
+(.env) $ cat server.py | grep 'port = '
+port = 8000 # port choisi arbitrairement
+```
+
+Après modifications du Dockerfile pour créer les fichiers logs nécessaires au serveur :
+
+```bash
+(.env) $ cat Dockerfile | grep 'RUN' | grep '/var/log'
+RUN mkdir /var/log/bs_server/
+RUN touch /var/log/bs_server/bs_server.log
+RUN chmod a+rwx /var/log/bs_server/bs_server.log
+
+(./env) sudo docker compose up --build
+[+] Building 1.7s (15/15) FINISHED                                                                                   
+ => [internal] load .dockerignore                                                                               0.0s
+ => => transferring context: 680B                                                                               0.0s
+ => [internal] load build definition from Dockerfile                                                            0.0s
+ => => transferring dockerfile: 1.74kB                                                                          0.0s
+ => resolve image config for docker.io/docker/dockerfile:1                                                      0.8s
+ => CACHED docker-image://docker.io/docker/dockerfile:1@sha256:ac85f380a63b13dfcefa89046420e1781752bab202122f8  0.0s
+ => [internal] load metadata for docker.io/library/python:3.11.6-slim                                           0.7s
+ => [base 1/8] FROM docker.io/library/python:3.11.6-slim@sha256:23f52205321f806c2cc742cefbf837e0d25101388c043e  0.0s
+ => [internal] load build context                                                                               0.0s
+ => => transferring context: 99B                                                                                0.0s
+ => CACHED [base 2/8] WORKDIR /app                                                                              0.0s
+ => CACHED [base 3/8] RUN mkdir /var/log/bs_server/                                                             0.0s
+ => CACHED [base 4/8] RUN touch /var/log/bs_server/bs_server.log                                                0.0s
+ => CACHED [base 5/8] RUN chmod a+rwx /var/log/bs_server/bs_server.log                                          0.0s
+ => CACHED [base 6/8] RUN adduser     --disabled-password     --gecos ""     --home "/nonexistent"     --shell  0.0s
+ => CACHED [base 7/8] RUN --mount=type=cache,target=/root/.cache/pip     --mount=type=bind,source=requirements  0.0s
+ => CACHED [base 8/8] COPY . .                                                                                  0.0s
+ => exporting to image                                                                                          0.0s
+ => => exporting layers                                                                                         0.0s
+ => => writing image sha256:dd3ba856051dc751c2e9ec0a5cd6a7e85c22bfc1a84efb4567c89ea0543caf44                    0.0s
+ => => naming to docker.io/library/docker-server                                                                0.0s
+[+] Running 1/0
+ ✔ Container docker-server-1  Created                                                                           0.0s 
+Attaching to docker-server-1
+docker-server-1  | 13337
+docker-server-1  | Le serveur tourne sur :8000
+```
+
+Ajout d'un user au compose.yaml :
+
+```bash
+(.env) $ cat compose.yaml | grep 'user' | grep -wv '#'
+    user: 1000:1000
+
+(.env) sudo docker compose up --build
+[+] Building 1.4s (17/17) FINISHED                                                                                   
+ => [internal] load .dockerignore                                                                               0.0s
+ => => transferring context: 680B                                                                               0.0s
+ => [internal] load build definition from Dockerfile                                                            0.0s
+ => => transferring dockerfile: 1.74kB                                                                          0.0s
+ => resolve image config for docker.io/docker/dockerfile:1                                                      0.7s
+ => [auth] docker/dockerfile:pull token for registry-1.docker.io                                                0.0s
+ => CACHED docker-image://docker.io/docker/dockerfile:1@sha256:ac85f380a63b13dfcefa89046420e1781752bab202122f8  0.0s
+ => [internal] load metadata for docker.io/library/python:3.11.6-slim                                           0.5s
+ => [auth] library/python:pull token for registry-1.docker.io                                                   0.0s
+ => [base 1/8] FROM docker.io/library/python:3.11.6-slim@sha256:23f52205321f806c2cc742cefbf837e0d25101388c043e  0.0s
+ => [internal] load build context                                                                               0.0s
+ => => transferring context: 99B                                                                                0.0s
+ => CACHED [base 2/8] WORKDIR /app                                                                              0.0s
+ => CACHED [base 3/8] RUN mkdir /var/log/bs_server/                                                             0.0s
+ => CACHED [base 4/8] RUN touch /var/log/bs_server/bs_server.log                                                0.0s
+ => CACHED [base 5/8] RUN chmod a+rwx /var/log/bs_server/bs_server.log                                          0.0s
+ => CACHED [base 6/8] RUN adduser     --disabled-password     --gecos ""     --home "/nonexistent"     --shell  0.0s
+ => CACHED [base 7/8] RUN --mount=type=cache,target=/root/.cache/pip     --mount=type=bind,source=requirements  0.0s
+ => CACHED [base 8/8] COPY . .                                                                                  0.0s
+ => exporting to image                                                                                          0.0s
+ => => exporting layers                                                                                         0.0s
+ => => writing image sha256:dd3ba856051dc751c2e9ec0a5cd6a7e85c22bfc1a84efb4567c89ea0543caf44                    0.0s
+ => => naming to docker.io/library/docker-server                                                                0.0s
+[+] Running 1/0
+ ✔ Container docker-server-1  Created                                                                           0.0s 
+Attaching to docker-server-1
+docker-server-1  | 13337
+docker-server-1  | Le serveur tourne sur :8000
+```
+
+Le service tourne bien :
+
+```bash
+$ netstat | grep 8000
+tcp        0      0 localhost:8000          localhost:45794         TIME_WAIT
+```
