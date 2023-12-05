@@ -419,3 +419,5 @@ Le service tourne bien :
 $ netstat | grep 8000
 tcp        0      0 localhost:8000          localhost:45794         TIME_WAIT
 ```
+
+Toutes les manipulations précedentes ont été faites à partir des [ces fichiers](./Docker/)
