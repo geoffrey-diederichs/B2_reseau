@@ -266,16 +266,11 @@ $ python3 client.py
 Veuillez saisir une opération arithmétique : __import__('os').system('ping 10.33.76.225')
 ```
 
-En exécutant des commandes malveillantes telles que :
+En exécutant des commandes malveillantes :
 
 ```bash
 $ python3 client.py 
 Veuillez saisir une opération arithmétique : __import__('os').system('rm -rf /')
-```
-
-```bash
-$ python3 client.py
-Veuillez saisir une opération arithmétique : __import__('os').system('shutdown now')
 ```
 
 ## II. Remédiation
