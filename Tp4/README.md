@@ -131,7 +131,7 @@ Contenu du ping en ascii :
 
 🌞 **`icmp_exf_receive.py`**
 
-[Script](./Scripts/icmp_exf_send.py)
+[Script](./Scripts/icmp_exf_rcv.py)
 
 ```bash
 $ sudo python3 icmp_exf_send.py 192.168.56.5 t
