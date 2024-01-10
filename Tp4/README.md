@@ -129,7 +129,7 @@ Sent 1 packets.
 Contenu du ping en ascii : 
 ''NaE@À¨8À¨8ÿt
 
-🌞 **`icmp_exf_receive.py`**
+🌞 **`icmp_exf_rcv.py`**
 
 [Script](./Scripts/icmp_exf_rcv.py)
 
