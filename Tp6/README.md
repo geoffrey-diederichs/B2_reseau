@@ -3,7 +3,6 @@
 ## Sommaire
 
 - [TP6 : Un peu de root-me](#tp6--un-peu-de-root-me)
-  - [Sommaire](#sommaire)
   - [I. DNS Rebinding](#i-dns-rebinding)
   - [II. Netfilter erreurs courantes](#ii-netfilter-erreurs-courantes)
   - [III. ARP Spoofing Ecoute active](#iii-arp-spoofing-ecoute-active)
@@ -13,7 +12,7 @@
 
 🌞 **Write-up de l'épreuve**
 
-On utilise [ce site](./https://lock.cmpxchg8b.com/rebinder.html) pour mettre en ligne un serveur DNS avec les paramètres :
+On utilise [ce site](https://lock.cmpxchg8b.com/rebinder.html) pour mettre en ligne un serveur DNS avec les paramètres :
 
 - A : 127.0.0.1
 - B : 8.8.8.8
