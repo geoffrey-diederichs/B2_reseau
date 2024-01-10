@@ -44,7 +44,7 @@ IP46T -A INPUT-HTTP -m limit --limit 3/sec --limit-burst 20 -j LOG --log-prefix 
 IP46T -A INPUT-HTTP -m limit --limit 3/sec --limit-burst 20 -j DROP
 ```
 
-Dans lequel l'administrateur a mis une limitte de flood à 20 requêtes toutes les 3 secondes.
+L'administrateur a visiblement mis une limitte de flood à 20 requêtes toutes les 3 secondes.
 
 On utilise donc [ce script](./Scripts/netfilter.py) pour envoyer 21 requêtes à la page d'adminisatrateur et afficher la réponse de la dernière :
 
