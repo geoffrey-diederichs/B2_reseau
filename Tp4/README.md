@@ -124,7 +124,7 @@ $ sudo python3 icmp_exf_send.py 192.168.56.1 t
 Sent 1 packets.
 ```
 
-[Capture du ping.](./icmp_exfr_send.pcapng)
+[Capture du ping.](./Captures/icmp_exfr_send.pcapng)
 
 Contenu du ping en ascii : 
 ''NaE@À¨8À¨8ÿt
@@ -162,4 +162,4 @@ Sent 1 packets.
 Sent 1 packets.
 ```
 
-[Capture des requêtes DNS](./dns_exfiltration_test.pcapng)
+[Capture des requêtes DNS](./Captures/dns_exfiltration_test.pcapng)
