@@ -39,7 +39,7 @@ TCP SYN ACK reçu !
 
 🌞 **`dns_cap.py`**
 
-[Script](./Scripts/dsn_cap.py)
+[Script](./Scripts/dns_cap.py)
 
 ```bash
 $ dig ynov.com
